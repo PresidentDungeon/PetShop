@@ -28,8 +28,7 @@ namespace PetShop.UI
                     //search
                     break;
                 case 3:
-                    //AddPet(CreatePet());
-                    CreatePet();
+                    AddPet(CreatePet());
                     Pause();
                     break;
                 default:
@@ -91,11 +90,14 @@ namespace PetShop.UI
                 Console.WriteLine("\nPlease enter a valid price");
             }
 
-            Pet pet = new Pet {Name = petName, Type = petType, Birthdate = birthDate, Color = petColor, Price = petPrice};
-            Console.WriteLine(pet);
-            return pet;
+            return petService.CreatePet(petName, petType, birthDate, petColor, petPrice);
         }
 
+        private void AddPet(Pet pet)
+        {
+            petService.AddPet(pet);
+            Console.WriteLine("\nPet was successfully added!");
+        }
 
         private void ShowAllPets()
         {
@@ -105,9 +107,6 @@ namespace PetShop.UI
                 Console.WriteLine(pet + "\n");
             }
         }
-
-
-
 
     }
 }

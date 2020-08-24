@@ -9,16 +9,27 @@ namespace PetShop.Core.ApplicationService.Impl
 {
     public class PetService : IPetService
     {
-        private IPetRepository PetRepository;
+        private IPetRepository petRepository;
 
-        public PetService(IPetRepository PetRepository)
+        public PetService(IPetRepository petRepository)
         {
-            this.PetRepository = PetRepository;
+            this.petRepository = petRepository;
+        }
+
+
+        public Pet CreatePet(string petName, petType type, DateTime birthDate, string color, double price)
+        {
+            return new Pet { Name = petName, Type = type, Birthdate = birthDate, Color = color, Price = price };
+        }
+
+        public void AddPet(Pet pet)
+        {
+            petRepository.AddPet(pet);
         }
 
         public List<Pet> GetAllPets()
         {
-            return PetRepository.ReadPets().ToList();
+            return petRepository.ReadPets().ToList();
         }
     }
 }
