@@ -1,4 +1,5 @@
-﻿using PetShop.Core.ApplicationService;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PetShop.Core.ApplicationService;
 using PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,11 @@ namespace PetShop.UI
 {
     public class MainMenu: Menu
     {
-        IPetService petService;
-        public MainMenu(IPetService petService) : base("Main Menu", "Show All Pets", "Search Pet", "Add Pet")
+        private IServiceProvider serviceProvider;
+
+        public MainMenu(IServiceProvider serviceProvider) : base("Main Menu", "Pet Menu", "Owner Menu")
         {
-            this.petService = petService;
+            this.serviceProvider = serviceProvider;
         }
 
         protected override void DoAction(int option)
@@ -21,92 +23,14 @@ namespace PetShop.UI
             switch (option)
             {
                 case 1:
-                    ShowAllPets();
-                    Pause();
+                    serviceProvider.GetRequiredService<PetMenu>().Run();
                     break;
                 case 2:
-                    //search
-                    break;
-                case 3:
-                    AddPet(CreatePet());
-                    Pause();
+                    serviceProvider.GetRequiredService<OwnerMenu>().Run();
                     break;
                 default:
                     break;
             }
         }
-
-        private Pet CreatePet()
-        {
-            Array petTypes = Enum.GetValues(typeof(petType));
-
-            Console.WriteLine("\nEnter pet name:");
-            string petName = Console.ReadLine();
-
-            while (petName.Length <= 0)
-            {
-                Console.WriteLine("\nPlease enter a valid name");
-                petName = Console.ReadLine();
-            }
-
-            Console.WriteLine("\nSelect a pet type");
-
-            for (int i = 0; i < petTypes.Length; i++)
-            {
-                Console.WriteLine(i + 1 + ": " + petTypes.GetValue(i));
-            }
-
-            int selection;
-
-            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > petTypes.Length)
-            {
-                Console.WriteLine($"Invalid input. Please choose an option in range (0-{petTypes.Length})");
-            }
-
-            petType petType = (petType)petTypes.GetValue(selection - 1);
-
-            Console.WriteLine("\nEnter birthdate:");
-            DateTime birthDate;
-
-            while (!DateTime.TryParse(Console.ReadLine(), out birthDate))
-            {
-                Console.WriteLine("Please enter a valid release date (dd/mm/yyyy)");
-            }
-
-            Console.WriteLine("\nEnter pet color:");
-            string petColor = Console.ReadLine();
-
-            while (petColor.Length <= 0)
-            {
-                Console.WriteLine("\nPlease enter a valid color");
-                petColor = Console.ReadLine();
-            }
-
-            Console.WriteLine("\nEnter pet price:");
-            double petPrice;
-
-            while (!double.TryParse(Console.ReadLine(), out petPrice) || petPrice < 0)
-            {
-                Console.WriteLine("\nPlease enter a valid price");
-            }
-
-            return petService.CreatePet(petName, petType, birthDate, petColor, petPrice);
-        }
-
-        private void AddPet(Pet pet)
-        {
-            petService.AddPet(pet);
-            Console.WriteLine("\nPet was successfully added!");
-        }
-
-        private void ShowAllPets()
-        {
-            Console.WriteLine("All registered pets are: \n");
-            foreach (Pet pet in petService.GetAllPets())
-            {
-                Console.WriteLine(pet + "\n");
-            }
-        }
-
     }
 }
