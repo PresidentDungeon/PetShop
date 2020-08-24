@@ -3,6 +3,7 @@ using PetShop.Core.ApplicationService;
 using PetShop.Core.ApplicationService.Impl;
 using PetShop.Core.DomainService;
 using PetShop.Infrastructure.Data;
+using PetShop.UI.PetMenu;
 using System;
 
 namespace PetShop.UI
@@ -16,6 +17,10 @@ namespace PetShop.UI
             serviceCollection.AddScoped<IPetService, PetService>();
 
             serviceCollection.AddScoped<MainMenu>();
+            serviceCollection.AddScoped<PetMainMenu>();
+            serviceCollection.AddScoped<PetSearchMenu>();
+            serviceCollection.AddScoped<PetDeleteMenu>();
+            serviceCollection.AddScoped<OwnerMenu>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
             var mainMenu = serviceProvider.GetRequiredService<MainMenu>();

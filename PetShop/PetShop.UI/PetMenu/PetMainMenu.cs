@@ -3,7 +3,6 @@ using PetShop.Core.ApplicationService;
 using PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PetShop.UI.PetMenu
 {
@@ -35,7 +34,6 @@ namespace PetShop.UI.PetMenu
                     Pause();
                     break;
                 case 4:
-                    //new VideoDeleteMenu(videoService).Run();
                     serviceProvider.GetRequiredService<PetDeleteMenu>().Run();
                     Pause();
                     break;
@@ -62,19 +60,7 @@ namespace PetShop.UI.PetMenu
             }
 
             Console.WriteLine("\nSelect a pet type");
-
-            for (int i = 0; i < petTypes.Length; i++)
-            {
-                Console.WriteLine(i + 1 + ": " + petTypes.GetValue(i));
-            }
-
-            int selection;
-
-            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > petTypes.Length)
-            {
-                Console.WriteLine($"Invalid input. Please choose an option in range (0-{petTypes.Length})");
-            }
-
+            int selection = GetOption<petType>((IList<petType>)petTypes, false);
             petType petType = (petType)petTypes.GetValue(selection - 1);
 
             Console.WriteLine("\nEnter birthdate:");
@@ -90,7 +76,7 @@ namespace PetShop.UI.PetMenu
 
             while (petColor.Length <= 0)
             {
-                Console.WriteLine("\nPlease enter a valid color");
+                Console.WriteLine("\nPlease enter a valid color or description");
                 petColor = Console.ReadLine();
             }
 
@@ -113,10 +99,10 @@ namespace PetShop.UI.PetMenu
 
         private void ShowAllPets()
         {
-            Console.WriteLine("All registered pets are: \n");
+            Console.WriteLine("\nAll registered pets are: \n");
             foreach (Pet pet in petService.GetAllPets())
             {
-                Console.WriteLine(pet + "\n");
+                Console.WriteLine(pet);
             }
         }
 
@@ -124,26 +110,12 @@ namespace PetShop.UI.PetMenu
         {
             List<Pet> allPets = petService.GetAllPets();
 
-            Console.WriteLine("\nPlease select which pet to update:");
-
-            for (int i = 0; i < allPets.Count; i++)
-            {
-                Console.WriteLine(i + 1 + ": " + allPets[i].ToString());
-            }
-
-            Console.WriteLine("\n0: Back");
-
-            int selection;
-
-            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 0 || selection > allPets.Count)
-            {
-                Console.WriteLine($"Invalid input. Please choose an option in range (0-{allPets.Count})");
-            }
+            Console.WriteLine("\nPlease select which pet to update:\n");
+            int selection = GetOption<Pet>(allPets, true);
 
             if (selection > 0)
             {
                 Console.WriteLine((petService.UpdatePet(CreatePet(), allPets[selection - 1].ID)) ? "Pet was successfully updated!" : "Error updating pet. Please try again.");
-
             }
         }
     }

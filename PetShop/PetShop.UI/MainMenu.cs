@@ -1,11 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PetShop.Core.ApplicationService;
 using PetShop.Core.Entities;
+using PetShop.UI.PetMenu;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace PetShop.UI
 {
@@ -23,7 +19,7 @@ namespace PetShop.UI
             switch (option)
             {
                 case 1:
-                    serviceProvider.GetRequiredService<PetMenu>().Run();
+                    serviceProvider.GetRequiredService<PetMainMenu>().Run();
                     break;
                 case 2:
                     serviceProvider.GetRequiredService<OwnerMenu>().Run();

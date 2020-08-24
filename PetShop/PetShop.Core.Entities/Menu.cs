@@ -80,9 +80,30 @@ namespace PetShop.Core.Entities
             Console.WriteLine("0: Exit");
         }
 
-        protected void Print(string stringToPrint)
+        protected int GetOption<T>(IList<T> List, bool isCancelable)
         {
-            Console.WriteLine(stringToPrint);
+            int selection;
+
+            for (int i = 0; i < List.Count; i++)
+            {
+                Console.WriteLine(i + 1 + ": " + List[i]);
+            }
+            if (!isCancelable)
+            {
+                while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > List.Count)
+                {
+                    Console.WriteLine($"Invalid input. Please choose an option in range (1-{List.Count})");
+                }
+            }
+            else
+            {
+                Console.WriteLine("0: Back");
+                while (!int.TryParse(Console.ReadLine(), out selection) || selection < 0 || selection > List.Count)
+                {
+                    Console.WriteLine($"Invalid input. Please choose an option in range (0-{List.Count})");
+                }
+            }
+            return selection;
         }
 
         protected void Pause()
