@@ -42,7 +42,7 @@ namespace PetShop.Infrastructure.Data
             return false;
         }
 
-        public bool DeletePet(int id)
+        public bool DeletePet(int ID)
         {
             Pet pet = pets.Where((x) => { return x.ID == ID; }).FirstOrDefault();
             if (pet != null)

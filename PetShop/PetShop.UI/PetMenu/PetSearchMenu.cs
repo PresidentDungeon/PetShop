@@ -75,7 +75,7 @@ namespace PetShop.UI.PetMenu
             Array petTypes = Enum.GetValues(typeof(petType));
             Console.WriteLine("\nSelect a pet type");
             int selection = GetOption<petType>((IList<petType>)petTypes, false);
-            petType petType = (petType)petTypes.GetValue(selection - 1);
+            petType petType = (petType)petTypes.GetValue(selection);
             Console.Clear();
 
             List<Pet> foundPets = PetService.GetPetByType(petType);

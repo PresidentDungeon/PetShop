@@ -61,7 +61,7 @@ namespace PetShop.UI.PetMenu
 
             Console.WriteLine("\nSelect a pet type");
             int selection = GetOption<petType>((IList<petType>)petTypes, false);
-            petType petType = (petType)petTypes.GetValue(selection - 1);
+            petType petType = (petType)petTypes.GetValue(selection-1);
 
             Console.WriteLine("\nEnter birthdate:");
             DateTime birthDate;
@@ -115,7 +115,7 @@ namespace PetShop.UI.PetMenu
 
             if (selection > 0)
             {
-                Console.WriteLine((petService.UpdatePet(CreatePet(), allPets[selection - 1].ID)) ? "Pet was successfully updated!" : "Error updating pet. Please try again.");
+                Console.WriteLine((petService.UpdatePet(CreatePet(), allPets[selection-1].ID)) ? "Pet was successfully updated!" : "Error updating pet. Please try again.");
             }
         }
     }

@@ -9,7 +9,7 @@ namespace PetShop.UI.PetMenu
     public class PetDeleteMenu: Menu
     {
         private IPetService petService;
-        public PetDeleteMenu(IPetService petService) : base("Delete Menu", "Delete by ID", "Delete by selection")
+        public PetDeleteMenu(IPetService petService) : base("Delete Menu", "Delete by ID", "Delete by Selection")
         {
             this.petService = petService;
             shouldCloseOnFinish = true;
@@ -45,22 +45,9 @@ namespace PetShop.UI.PetMenu
         {
             List<Pet> allPets = petService.GetAllPets();
 
-            Console.WriteLine("\nPlease select which pet to delete:");
-
-            for (int i = 0; i < allPets.Count; i++)
-            {
-                Console.WriteLine(i + 1 + ": " + allPets[i].ToString());
-            }
-
-            Console.WriteLine("\n0: Back");
-
-            int selection;
-
-            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 0 || selection > allPets.Count)
-            {
-                Console.WriteLine($"Invalid input. Please choose an option in range (0-{allPets.Count})");
-            }
-
+            Console.WriteLine("\nPlease select which pet to delete:\n");
+            int selection = GetOption<Pet>(allPets, true);
+            
             if (selection > 0)
             {
                 Console.WriteLine((petService.DeletePet(allPets[selection - 1].ID) ? "Pet was successfully deleted!" : "Error - no such ID found"));
