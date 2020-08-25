@@ -18,13 +18,18 @@ namespace PetShop.UI
 
             serviceCollection.AddScoped<MainMenu>();
             serviceCollection.AddScoped<PetMainMenu>();
+            serviceCollection.AddScoped<PetShowcaseMenu>();
             serviceCollection.AddScoped<PetSearchMenu>();
             serviceCollection.AddScoped<PetDeleteMenu>();
             serviceCollection.AddScoped<OwnerMenu>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
-            var mainMenu = serviceProvider.GetRequiredService<MainMenu>();
-            mainMenu.Run();
+
+            var PetRepository = serviceProvider.GetRequiredService<IPetRepository>(); 
+            var MainMenu = serviceProvider.GetRequiredService<MainMenu>();
+
+            PetRepository.CreateInitialData();
+            MainMenu.Run();
         }
     }
 }

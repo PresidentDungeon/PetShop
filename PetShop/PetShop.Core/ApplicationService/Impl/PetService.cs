@@ -18,17 +18,44 @@ namespace PetShop.Core.ApplicationService.Impl
 
         public Pet CreatePet(string petName, petType type, DateTime birthDate, string color, double price)
         {
+            if (string.IsNullOrEmpty(petName))
+            {
+                throw new ArgumentException("Entered pet name too short");
+            }
+            if (string.IsNullOrEmpty(color))
+            {
+                throw new ArgumentException("Entered color description too short");
+            }
+            if(price < 0)
+            {
+                throw new ArgumentException("Pet price can't be negative");
+            }
+
             return new Pet { Name = petName, Type = type, Birthdate = birthDate, Color = color, Price = price };
         }
 
-        public void AddPet(Pet pet)
+        public bool AddPet(Pet pet)
         {
-            petRepository.AddPet(pet);
+            if(pet != null)
+            {
+                return petRepository.AddPet(pet);
+            }
+            return false;
         }
 
         public List<Pet> GetAllPets()
         {
             return petRepository.ReadPets().ToList();
+        }
+
+        public List<Pet> GetAllPetsByPrice()
+        {
+            return petRepository.ReadPets().OrderBy((x) => { return x.Price; }).ToList();
+        }
+
+        public List<Pet> GetAllAvailablePetsByPrice()
+        {
+            return (from x in GetAllPets() where x.Owner == null orderby x.Price select x).ToList();
         }
 
         public Pet GetPetByID(int ID)
@@ -104,8 +131,13 @@ namespace PetShop.Core.ApplicationService.Impl
 
         public bool UpdatePet(Pet pet, int ID)
         {
-            pet.ID = ID;
-            return petRepository.UpdatePet(pet);
+            if(pet != null)
+            {
+                pet.ID = ID;
+                return petRepository.UpdatePet(pet);
+            }
+            return false;
+
         }
 
         public bool DeletePet(int ID)

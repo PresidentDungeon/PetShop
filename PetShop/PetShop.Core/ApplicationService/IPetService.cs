@@ -9,9 +9,13 @@ namespace PetShop.Core.ApplicationService
     {
         Pet CreatePet(string petName, petType type, DateTime birthDate, string color, double price);
 
-        public void AddPet(Pet pet);
+        bool AddPet(Pet pet);
 
         List<Pet> GetAllPets();
+
+        List<Pet> GetAllPetsByPrice();
+
+        List<Pet> GetAllAvailablePetsByPrice();
 
         Pet GetPetByID(int ID);
 

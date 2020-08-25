@@ -16,14 +16,14 @@ namespace PetShop.Infrastructure.Data
         {
             this.ID = 0;
             this.pets = new List<Pet>();
-            CreateInitialData();
         }
 
-        public void AddPet(Pet pet)
+        public bool AddPet(Pet pet)
         {
             ID++;
             pet.ID = ID;
             pets.Add(pet);
+            return true;
         }
 
         public IEnumerable<Pet> ReadPets()
@@ -53,7 +53,7 @@ namespace PetShop.Infrastructure.Data
             return false;
         }
 
-        private void CreateInitialData()
+        public void CreateInitialData()
         {
             AddPet(new Pet 
             { 
@@ -61,7 +61,7 @@ namespace PetShop.Infrastructure.Data
                 Type = petType.Cat,
                 Birthdate = DateTime.Parse("29-03-2012"),
                 Color = "White with black stripes",
-                Price = 250.0
+                Price = 750.0
             });
             AddPet(new Pet
             {

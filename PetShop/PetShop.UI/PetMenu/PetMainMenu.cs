@@ -8,13 +8,13 @@ namespace PetShop.UI.PetMenu
 {
     public class PetMainMenu: Menu
     {
-        private IPetService petService;
-        private IServiceProvider serviceProvider;
+        private IPetService PetService;
+        private IServiceProvider ServiceProvider;
 
         public PetMainMenu(IPetService petService, IServiceProvider serviceProvider) : base("Pet Menu", "View Pets", "Search Pet", "Add Pet", "Remove Pet", "Update Pet")
         {
-            this.petService = petService;
-            this.serviceProvider = serviceProvider;
+            this.PetService = petService;
+            this.ServiceProvider = serviceProvider;
         }
 
         protected override void DoAction(int option)
@@ -22,11 +22,11 @@ namespace PetShop.UI.PetMenu
             switch (option)
             {
                 case 1:
-                    ShowAllPets();
+                    ServiceProvider.GetRequiredService<PetShowcaseMenu>().Run();
                     Pause();
                     break;
                 case 2:
-                    serviceProvider.GetRequiredService<PetSearchMenu>().Run();
+                    ServiceProvider.GetRequiredService<PetSearchMenu>().Run();
                     Pause();
                     break;
                 case 3:
@@ -34,7 +34,7 @@ namespace PetShop.UI.PetMenu
                     Pause();
                     break;
                 case 4:
-                    serviceProvider.GetRequiredService<PetDeleteMenu>().Run();
+                    ServiceProvider.GetRequiredService<PetDeleteMenu>().Run();
                     Pause();
                     break;
                 case 5:
@@ -88,34 +88,37 @@ namespace PetShop.UI.PetMenu
                 Console.WriteLine("\nPlease enter a valid price");
             }
 
-            return petService.CreatePet(petName, petType, birthDate, petColor, petPrice);
+            try 
+            { 
+                return PetService.CreatePet(petName, petType, birthDate, petColor, petPrice); 
+            }
+            catch(ArgumentException ex)
+            {
+                Console.WriteLine($"\n{ex.Message}");
+                return null;
+            }
+            
         }
 
         private void AddPet(Pet pet)
         {
-            petService.AddPet(pet);
-            Console.WriteLine("\nPet was successfully added!");
-        }
-
-        private void ShowAllPets()
-        {
-            Console.WriteLine("\nAll registered pets are: \n");
-            foreach (Pet pet in petService.GetAllPets())
+            if (PetService.AddPet(pet))
             {
-                Console.WriteLine(pet);
+                Console.WriteLine("\nPet was successfully added!");
             }
+            
         }
 
         private void UpdatePet()
         {
-            List<Pet> allPets = petService.GetAllPets();
+            List<Pet> allPets = PetService.GetAllPets();
 
             Console.WriteLine("\nPlease select which pet to update:\n");
             int selection = GetOption<Pet>(allPets, true);
 
             if (selection > 0)
             {
-                Console.WriteLine((petService.UpdatePet(CreatePet(), allPets[selection-1].ID)) ? "Pet was successfully updated!" : "Error updating pet. Please try again.");
+                Console.WriteLine((PetService.UpdatePet(CreatePet(), allPets[selection-1].ID)) ? "Pet was successfully updated!" : "Error updating pet. Please try again.");
             }
         }
     }
