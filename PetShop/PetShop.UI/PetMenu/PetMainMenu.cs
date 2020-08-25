@@ -106,7 +106,6 @@ namespace PetShop.UI.PetMenu
             {
                 Console.WriteLine("\nPet was successfully added!");
             }
-            
         }
 
         private void UpdatePet()

@@ -4,14 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PetShop.UI.PetMenu
+namespace PetShop.UI.OwnerMenu
 {
-    public class PetDeleteMenu: Menu
+    public class OwnerDeleteMenu: Menu
     {
-        private IPetService PetService;
-        public PetDeleteMenu(IPetService petService) : base("Delete Menu", "Delete by ID", "Delete by Selection")
+        private IOwnerService OwnerService;
+        public OwnerDeleteMenu(IOwnerService ownerService) : base("Delete Menu", "Delete by ID", "Delete by Selection")
         {
-            this.PetService = petService;
+            this.OwnerService = ownerService;
             shouldCloseOnFinish = true;
         }
 
@@ -38,19 +38,19 @@ namespace PetShop.UI.PetMenu
             {
                 Console.WriteLine("Please only enter a valid ID");
             }
-            Console.WriteLine((PetService.DeletePet(ID) ? "Pet was successfully deleted!" : "Error - no such ID found"));
+            Console.WriteLine((OwnerService.DeleteOwner(ID) ? "Owner was successfully deleted!" : "Error - no such ID found"));
         }
 
         private void DeleteBySelection()
         {
-            List<Pet> allPets = PetService.GetAllPets();
+            List<Owner> allOwners = OwnerService.GetAllOwners();
 
             Console.WriteLine("\nPlease select which pet to delete:\n");
-            int selection = GetOption<Pet>(allPets, true);
-            
+            int selection = GetOption<Owner>(allOwners, true);
+
             if (selection > 0)
             {
-                Console.WriteLine((PetService.DeletePet(allPets[selection - 1].ID) ? "Pet was successfully deleted!" : "Error - no such ID found"));
+                Console.WriteLine((OwnerService.DeleteOwner(allOwners[selection - 1].ID) ? "Owner was successfully deleted!" : "Error - no such ID found"));
             }
         }
     }

@@ -22,7 +22,7 @@ namespace PetShop.UI
                     serviceProvider.GetRequiredService<PetMainMenu>().Run();
                     break;
                 case 2:
-                    serviceProvider.GetRequiredService<OwnerMenu>().Run();
+                    serviceProvider.GetRequiredService<OwnerMainMenu>().Run();
                     break;
                 default:
                     break;
