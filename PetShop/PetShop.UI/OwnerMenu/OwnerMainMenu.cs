@@ -1,11 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PetShop.Core.ApplicationService;
-using PetShop.Core.ApplicationService.Impl;
 using PetShop.Core.Entities;
 using PetShop.UI.OwnerMenu;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PetShop.UI
 {

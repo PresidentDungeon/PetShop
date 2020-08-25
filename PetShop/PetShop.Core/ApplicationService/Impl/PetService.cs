@@ -9,11 +9,11 @@ namespace PetShop.Core.ApplicationService.Impl
 {
     public class PetService : IPetService
     {
-        private IPetRepository petRepository;
+        private IPetRepository PetRepository;
 
         public PetService(IPetRepository petRepository)
         {
-            this.petRepository = petRepository;
+            this.PetRepository = petRepository;
         }
 
         public Pet CreatePet(string petName, petType type, DateTime birthDate, string color, double price)
@@ -38,19 +38,19 @@ namespace PetShop.Core.ApplicationService.Impl
         {
             if(pet != null)
             {
-                return petRepository.AddPet(pet);
+                return PetRepository.AddPet(pet);
             }
             return false;
         }
 
         public List<Pet> GetAllPets()
         {
-            return petRepository.ReadPets().ToList();
+            return PetRepository.ReadPets().ToList();
         }
 
         public List<Pet> GetAllPetsByPrice()
         {
-            return petRepository.ReadPets().OrderBy((x) => { return x.Price; }).ToList();
+            return PetRepository.ReadPets().OrderBy((x) => { return x.Price; }).ToList();
         }
 
         public List<Pet> GetAllAvailablePetsByPrice()
@@ -134,14 +134,14 @@ namespace PetShop.Core.ApplicationService.Impl
             if(pet != null)
             {
                 pet.ID = ID;
-                return petRepository.UpdatePet(pet);
+                return PetRepository.UpdatePet(pet);
             }
             return false;
         }
 
         public bool DeletePet(int ID)
         {
-            return petRepository.DeletePet(ID);
+            return PetRepository.DeletePet(ID);
         }
     }
 }

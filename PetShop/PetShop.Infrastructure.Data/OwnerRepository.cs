@@ -69,7 +69,7 @@ namespace PetShop.Infrastructure.Data
                 LastName = "Thulstrup",
                 Address = "Kastanievej 17",
                 PhoneNumber = "23221119",
-                Email = "Jozze@hotmail.com"
+                Email = "SejeJozze@hotmail.com"
             });
         }
     }

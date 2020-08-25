@@ -2,7 +2,6 @@
 using PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PetShop.UI.PetMenu
 {
@@ -12,7 +11,7 @@ namespace PetShop.UI.PetMenu
         public PetDeleteMenu(IPetService petService) : base("Delete Menu", "Delete by ID", "Delete by Selection")
         {
             this.PetService = petService;
-            shouldCloseOnFinish = true;
+            ShouldCloseOnFinish = true;
         }
 
         protected override void DoAction(int option)

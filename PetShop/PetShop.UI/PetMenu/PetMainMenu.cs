@@ -97,7 +97,6 @@ namespace PetShop.UI.PetMenu
                 Console.WriteLine($"\n{ex.Message}");
                 return null;
             }
-            
         }
 
         private void AddPet(Pet pet)

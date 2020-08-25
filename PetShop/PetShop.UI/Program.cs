@@ -5,7 +5,6 @@ using PetShop.Core.DomainService;
 using PetShop.Infrastructure.Data;
 using PetShop.UI.OwnerMenu;
 using PetShop.UI.PetMenu;
-using System;
 
 namespace PetShop.UI
 {
@@ -29,13 +28,13 @@ namespace PetShop.UI
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var PetRepository = serviceProvider.GetRequiredService<IPetRepository>(); 
-            var OwnerRepository = serviceProvider.GetRequiredService<IOwnerRepository>(); 
-            var MainMenu = serviceProvider.GetRequiredService<MainMenu>();
+            var petRepository = serviceProvider.GetRequiredService<IPetRepository>(); 
+            var ownerRepository = serviceProvider.GetRequiredService<IOwnerRepository>(); 
+            var mainMenu = serviceProvider.GetRequiredService<MainMenu>();
 
-            PetRepository.CreateInitialData();
-            OwnerRepository.CreateInitialData();
-            MainMenu.Run();
+            petRepository.CreateInitialData();
+            ownerRepository.CreateInitialData();
+            mainMenu.Run();
         }
     }
 }

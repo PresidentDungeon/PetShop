@@ -7,11 +7,11 @@ namespace PetShop.UI
 {
     public class MainMenu: Menu
     {
-        private IServiceProvider serviceProvider;
+        private IServiceProvider ServiceProvider;
 
         public MainMenu(IServiceProvider serviceProvider) : base("Main Menu", "Pet Menu", "Owner Menu")
         {
-            this.serviceProvider = serviceProvider;
+            this.ServiceProvider = serviceProvider;
         }
 
         protected override void DoAction(int option)
@@ -19,10 +19,10 @@ namespace PetShop.UI
             switch (option)
             {
                 case 1:
-                    serviceProvider.GetRequiredService<PetMainMenu>().Run();
+                    ServiceProvider.GetRequiredService<PetMainMenu>().Run();
                     break;
                 case 2:
-                    serviceProvider.GetRequiredService<OwnerMainMenu>().Run();
+                    ServiceProvider.GetRequiredService<OwnerMainMenu>().Run();
                     break;
                 default:
                     break;

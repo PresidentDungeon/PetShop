@@ -3,40 +3,39 @@ using PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PetShop.Infrastructure.Data
 {
     public class PetRepository: IPetRepository
     {
         private int ID;
-        private List<Pet> pets;
+        private List<Pet> Pets;
 
         public PetRepository()
         {
             this.ID = 0;
-            this.pets = new List<Pet>();
+            this.Pets = new List<Pet>();
         }
 
         public bool AddPet(Pet pet)
         {
             ID++;
             pet.ID = ID;
-            pets.Add(pet);
+            Pets.Add(pet);
             return true;
         }
 
         public IEnumerable<Pet> ReadPets()
         {
-            return pets;
+            return Pets;
         }
 
         public bool UpdatePet(Pet pet)
         {
-            int index = pets.FindIndex((x) => { return x.ID == pet.ID; });
+            int index = Pets.FindIndex((x) => { return x.ID == pet.ID; });
             if (index != -1)
             {
-                pets[index] = pet;
+                Pets[index] = pet;
                 return true;
             }
             return false;
@@ -44,10 +43,10 @@ namespace PetShop.Infrastructure.Data
 
         public bool DeletePet(int ID)
         {
-            Pet pet = pets.Where((x) => { return x.ID == ID; }).FirstOrDefault();
+            Pet pet = Pets.Where((x) => { return x.ID == ID; }).FirstOrDefault();
             if (pet != null)
             {
-                pets.Remove(pet);
+                Pets.Remove(pet);
                 return true;
             }
             return false;

@@ -31,6 +31,4 @@ namespace PetShop.Core.Entities
         Turtle,
         Tarantula
     }
-
-
 }

@@ -7,16 +7,16 @@ namespace PetShop.Core.Entities
     public abstract class Menu
     {
         private int EXIT_OPTION = 0;
-        protected bool shouldCloseOnFinish = false;
-        private string inputText = "Please select an option:";
+        protected bool ShouldCloseOnFinish = false;
+        private string InputText = "Please select an option:";
 
-        private string[] menuItems;
-        private string menuTitle;
+        private string[] MenuItems;
+        private string MenuTitle;
 
         public Menu(string menuTitle, params string[] menuItems)
         {
-            this.menuTitle = menuTitle;
-            this.menuItems = menuItems;
+            this.MenuTitle = menuTitle;
+            this.MenuItems = menuItems;
         }
 
         private int GetOption()
@@ -25,16 +25,16 @@ namespace PetShop.Core.Entities
 
             while (option < 0)
             {
-                Console.WriteLine("\n" + inputText);
+                Console.WriteLine("\n" + InputText);
                 string nrAsText = Console.ReadLine();
 
                 try
                 {
                     option = int.Parse(nrAsText);
 
-                    if (option < 0 || option > menuItems.Length)
+                    if (option < 0 || option > MenuItems.Length)
                     {
-                        Console.WriteLine("Invalid options. Please choose an option in range (0 - " + menuItems.Length + " )");
+                        Console.WriteLine("Invalid options. Please choose an option in range (0 - " + MenuItems.Length + " )");
                         option = -1;
                     }
                 }
@@ -62,20 +62,20 @@ namespace PetShop.Core.Entities
                 }
                 else
                 {
-                    Console.WriteLine("\nClosing " + menuTitle);
+                    Console.WriteLine("\nClosing " + MenuTitle);
                     break;
                 }
-            } while (!shouldCloseOnFinish);
+            } while (!ShouldCloseOnFinish);
         }
 
         private void PrintMenu()
         {
             Console.Clear();
-            Console.WriteLine(menuTitle + "\n");
+            Console.WriteLine(MenuTitle + "\n");
 
-            for (int i = 0; i < menuItems.Length; i++)
+            for (int i = 0; i < MenuItems.Length; i++)
             {
-                Console.WriteLine(i + 1 + ": " + menuItems[i]);
+                Console.WriteLine(i + 1 + ": " + MenuItems[i]);
             }
             Console.WriteLine("0: Exit");
         }

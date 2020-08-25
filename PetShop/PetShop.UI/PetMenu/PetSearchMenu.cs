@@ -11,7 +11,7 @@ namespace PetShop.UI.PetMenu
         public PetSearchMenu(IPetService PetService) : base("Search Menu", "Search by ID", "Search by Name", "Search by Animal Type", "Search by Birthdate")
         {
             this.PetService = PetService;
-            shouldCloseOnFinish = true;
+            ShouldCloseOnFinish = true;
         }
 
         protected override void DoAction(int option)

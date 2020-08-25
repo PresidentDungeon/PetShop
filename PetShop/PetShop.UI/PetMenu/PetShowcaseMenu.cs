@@ -2,7 +2,6 @@
 using PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PetShop.UI.PetMenu
 {
@@ -12,7 +11,7 @@ namespace PetShop.UI.PetMenu
         public PetShowcaseMenu(IPetService petService) : base("Showcase Menu", "Display all Pets", "Display Pets by Price", "Display Available Pets by Price", "Display top five Cheapest Available Pets")
         {
             this.PetService = petService;
-            shouldCloseOnFinish = true;
+            ShouldCloseOnFinish = true;
         }
 
         protected override void DoAction(int option)

@@ -13,11 +13,6 @@ namespace PetShop.Core.Entities
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-
         public override string ToString()
         {
             return $"{FirstName} {LastName} (ID: {ID})";

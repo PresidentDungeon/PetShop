@@ -2,7 +2,6 @@
 using PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PetShop.UI.OwnerMenu
 {
@@ -12,7 +11,7 @@ namespace PetShop.UI.OwnerMenu
         public OwnerDeleteMenu(IOwnerService ownerService) : base("Delete Menu", "Delete by ID", "Delete by Selection")
         {
             this.OwnerService = ownerService;
-            shouldCloseOnFinish = true;
+            ShouldCloseOnFinish = true;
         }
 
         protected override void DoAction(int option)
