@@ -23,7 +23,6 @@ namespace PetShop.Core.ApplicationService.Impl
             int minAddressLenght = 5;
             int minPhoneNumberLenght = 8;
 
-
             if (string.IsNullOrEmpty(firstName))
             {
                 throw new ArgumentException("Entered owner first name too short");

@@ -37,19 +37,41 @@ namespace PetShop.UI
             {
                 Console.WriteLine("Please only enter a valid ID");
             }
-            Console.WriteLine((PetService.DeletePet(ID) ? "Pet was successfully deleted!" : "Error - no such ID found"));
+
+            Pet foundPet = PetService.GetPetByID(ID);
+            if(foundPet == null)
+            {
+                Console.WriteLine("\nError - no such ID found");
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine($"\nDo you want to delete\n{foundPet}");
+
+                if (ConfirmChoise())
+                {
+                    Console.WriteLine((PetService.DeletePet(ID) ? "\nPet was successfully deleted!" : "\nError deleting pet. Please try again..."));
+                }
+            }
         }
 
         private void DeleteBySelection()
         {
             List<Pet> allPets = PetService.GetAllPets();
 
-            Console.WriteLine("\nPlease select which pet to delete:");
+            Console.Clear();
+            Console.WriteLine("\nPlease select which pet to delete:\n");
             int selection = GetOption<Pet>(allPets, true);
             
             if (selection > 0)
             {
-                Console.WriteLine((PetService.DeletePet(allPets[selection - 1].ID) ? "Pet was successfully deleted!" : "Error - no such ID found"));
+                Console.Clear();
+                Console.WriteLine($"\nDo you want to delete\n{allPets[selection-1]}");
+
+                if (ConfirmChoise())
+                {
+                    Console.WriteLine((PetService.DeletePet(allPets[selection-1].ID) ? "\nPet was successfully deleted!" : "\nError deleting pet. Please try again..."));
+                }
             }
         }
     }

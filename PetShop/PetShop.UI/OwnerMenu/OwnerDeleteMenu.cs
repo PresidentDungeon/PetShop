@@ -37,19 +37,41 @@ namespace PetShop.UI
             {
                 Console.WriteLine("Please only enter a valid ID");
             }
-            Console.WriteLine((OwnerService.DeleteOwner(ID) ? "Owner was successfully deleted!" : "Error - no such ID found"));
+
+            Owner foundOwner = OwnerService.GetOwnerByID(ID);
+            if (foundOwner == null)
+            {
+                Console.WriteLine("\nError - no such ID found");
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine($"\nDo you want to delete\n{foundOwner}");
+
+                if (ConfirmChoise())
+                {
+                    Console.WriteLine((OwnerService.DeleteOwner(ID) ? "\nOwner was successfully deleted!" : "\nError deleting owner. Please try again..."));
+                }
+            }
         }
 
         private void DeleteBySelection()
         {
             List<Owner> allOwners = OwnerService.GetAllOwners();
 
-            Console.WriteLine("\nPlease select which pet to delete:\n");
+            Console.Clear();
+            Console.WriteLine("\nPlease select which owner to delete:\n");
             int selection = GetOption<Owner>(allOwners, true);
 
             if (selection > 0)
             {
-                Console.WriteLine((OwnerService.DeleteOwner(allOwners[selection - 1].ID) ? "Owner was successfully deleted!" : "Error - no such ID found"));
+                Console.Clear();
+                Console.WriteLine($"\nDo you want to delete\n{allOwners[selection - 1]}");
+
+                if (ConfirmChoise())
+                {
+                    Console.WriteLine((OwnerService.DeleteOwner(allOwners[selection - 1].ID) ? "\nOwner was successfully deleted!" : "\nError deleting owner. Please try again..."));
+                }
             }
         }
     }

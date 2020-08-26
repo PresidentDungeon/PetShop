@@ -54,19 +54,10 @@ namespace PetShop.UI
             }
 
             Console.WriteLine($"\nDo you want to remove\n{pet.Owner}\nas a owner to\n{pet}");
-            Console.WriteLine("(y/n)");
 
-            string choise = Console.ReadLine();
-
-            while (choise.ToLower() != "y" && choise.ToLower() != "n")
+            if (ConfirmChoise())
             {
-                Console.WriteLine("Please type 'y' to accept or 'n' to cancel");
-                choise = Console.ReadLine();
-            }
-
-            if (choise.Equals("y"))
-            {
-                Console.WriteLine((PetExchangeService.UnregisterPet(pet)) ? "Owner successfully removed as owner to pet" : "Error unregistering owner to pet. Please try again");
+                Console.WriteLine((PetExchangeService.UnregisterPet(pet)) ? "\nOwner successfully removed as owner to pet" : "\nError unregistering owner to pet. Please try again");
             }
         }
 
@@ -88,19 +79,10 @@ namespace PetShop.UI
 
             Console.Clear();
             Console.WriteLine($"\nDo you want to unregister\n{selectedPet.Owner}\nas a owner to\n{selectedPet}");
-            Console.WriteLine("(y/n)");
 
-            string choise = Console.ReadLine();
-
-            while (choise.ToLower() != "y" && choise.ToLower() != "n")
+            if (ConfirmChoise())
             {
-                Console.WriteLine("Please type 'y' to accept or 'n' to cancel");
-                choise = Console.ReadLine();
-            }
-
-            if (choise.Equals("y"))
-            {
-                Console.WriteLine((PetExchangeService.UnregisterPet(selectedPet)) ? "Owner successfully removed as owner to pet" : "Error unregistering owner to pet. Please try again");
+                Console.WriteLine((PetExchangeService.UnregisterPet(selectedPet)) ? "\nOwner successfully removed as owner to pet" : "\nError unregistering owner to pet. Please try again");
             }
         }
     }

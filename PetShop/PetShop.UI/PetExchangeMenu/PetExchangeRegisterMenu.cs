@@ -65,19 +65,10 @@ namespace PetShop.UI
             }
 
             Console.WriteLine($"\nDo you want to register\n{pet}\nto\n{owner}");
-            Console.WriteLine("(y/n)");
-
-            string choise = Console.ReadLine();
-
-            while (choise.ToLower() != "y" && choise.ToLower() != "n")
+           
+            if(ConfirmChoise())
             {
-                Console.WriteLine("Please type 'y' to accept or 'n' to cancel");
-                choise = Console.ReadLine();
-            }
-
-            if(choise.Equals("y"))
-            {
-                Console.WriteLine((PetExchangeService.RegisterPet(pet, owner)) ? "Pet successfully registered to owner" : "Error registering pet to owner. Please try again");
+                Console.WriteLine((PetExchangeService.RegisterPet(pet, owner)) ? "\nPet successfully registered to owner" : "\nError registering pet to owner. Please try again");
             }
         }
 
@@ -112,17 +103,8 @@ namespace PetShop.UI
 
             Console.Clear();
             Console.WriteLine($"\nDo you want to register\n{selectedPet}\nto\n{selectedOwner}");
-            Console.WriteLine("(y/n)");
 
-            string choise = Console.ReadLine();
-
-            while (choise.ToLower() != "y" && choise.ToLower() != "n")
-            {
-                Console.WriteLine("Please type 'y' to accept or 'n' to cancel");
-                choise = Console.ReadLine();
-            }
-
-            if (choise.ToLower().Equals("y"))
+            if (ConfirmChoise())
             {
                 Console.WriteLine((PetExchangeService.RegisterPet(selectedPet, selectedOwner)) ? "\nPet successfully registered to owner" : "\nError registering pet to owner. Please try again");
             }

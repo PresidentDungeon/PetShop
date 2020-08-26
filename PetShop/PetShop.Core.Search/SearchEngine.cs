@@ -56,7 +56,6 @@ namespace PetShop.Core.Search
                             matches.Add(entity);
                         }
                     }
-                
             }
             return matches;
         }

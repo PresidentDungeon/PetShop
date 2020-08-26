@@ -11,7 +11,7 @@ namespace PetShop.UI
         private IOwnerService OwnerService;
         private IServiceProvider ServiceProvider;
 
-        public OwnerMainMenu(IOwnerService ownerService, IServiceProvider serviceProvider) : base("Owner Menu", "Add Owner", "View Owners", "Delete Owner", "Update Owner")
+        public OwnerMainMenu(IOwnerService ownerService, IServiceProvider serviceProvider) : base("Owner Menu", "Add Owner", "View Owners", "Update Owner", "Delete Owner")
         {
             this.OwnerService = ownerService;
             this.ServiceProvider = serviceProvider;
@@ -30,11 +30,11 @@ namespace PetShop.UI
                     Pause();
                     break;
                 case 3:
-                    ServiceProvider.GetRequiredService<OwnerDeleteMenu>().Run();
+                    UpdateOwner();
                     Pause();
                     break;
                 case 4:
-                    UpdateOwner();
+                    ServiceProvider.GetRequiredService<OwnerDeleteMenu>().Run();
                     Pause();
                     break;
                 default:
@@ -108,12 +108,23 @@ namespace PetShop.UI
         {
             List<Owner> allOwners = OwnerService.GetAllOwners();
 
+            Console.Clear();
             Console.WriteLine("\nPlease select which owner to update:\n");
             int selection = GetOption<Owner>(allOwners, true);
 
             if (selection > 0)
             {
-                Console.WriteLine((OwnerService.UpdateOwner(CreateOwner(), allOwners[selection - 1].ID)) ? "Owner was successfully updated!" : "Error updating owner. Please try again.");
+                Owner selectedOwner = allOwners[selection - 1];
+                Owner newOwner = CreateOwner();
+                newOwner.ID = selectedOwner.ID;
+                Console.Clear();
+
+                Console.WriteLine($"\nDo you want to update\n{selectedOwner}\nto\n{newOwner}");
+
+                if (ConfirmChoise())
+                {
+                    Console.WriteLine((OwnerService.UpdateOwner(newOwner, selectedOwner.ID)) ? "Owner was successfully updated!" : "Error updating owner. Please try again.");
+                }
             }
         }
     }

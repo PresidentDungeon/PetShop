@@ -16,7 +16,6 @@ namespace PetShop.Infrastructure.Data
             this.PetRepository = petRepository;
             this.OwnerRepository = ownerRepository;
         }
-
         public void InitData()
         {
             PetRepository.AddPet(new Pet
@@ -44,7 +43,6 @@ namespace PetShop.Infrastructure.Data
                 Price = 650.0
             });
 
-
             OwnerRepository.AddOwner(new Owner
             {
                 FirstName = "Mathias",
@@ -62,6 +60,5 @@ namespace PetShop.Infrastructure.Data
                 Email = "SejeJozze@hotmail.com"
             });
         }
-
     }
 }

@@ -11,7 +11,7 @@ namespace PetShop.UI
         private IPetService PetService;
         private IServiceProvider ServiceProvider;
 
-        public PetMainMenu(IPetService petService, IServiceProvider serviceProvider) : base("Pet Menu", "View Pets", "Search Pet", "Add Pet", "Remove Pet", "Update Pet")
+        public PetMainMenu(IPetService petService, IServiceProvider serviceProvider) : base("Pet Menu", "Add Pet", "View Pet", "Search Pet", "Update Pet", "Delete Pet")
         {
             this.PetService = petService;
             this.ServiceProvider = serviceProvider;
@@ -22,23 +22,23 @@ namespace PetShop.UI
             switch (option)
             {
                 case 1:
-                    ServiceProvider.GetRequiredService<PetShowcaseMenu>().Run();
-                    Pause();
-                    break;
-                case 2:
-                    ServiceProvider.GetRequiredService<PetSearchMenu>().Run();
-                    Pause();
-                    break;
-                case 3:
                     AddPet(CreatePet());
                     Pause();
                     break;
+                case 2:
+                    ServiceProvider.GetRequiredService<PetShowcaseMenu>().Run();
+                    Pause();
+                    break;
+                case 3:
+                    ServiceProvider.GetRequiredService<PetSearchMenu>().Run();
+                    Pause();
+                    break;
                 case 4:
-                    ServiceProvider.GetRequiredService<PetDeleteMenu>().Run();
+                    UpdatePet();
                     Pause();
                     break;
                 case 5:
-                    UpdatePet();
+                    ServiceProvider.GetRequiredService<PetDeleteMenu>().Run();
                     Pause();
                     break;
                 default:
@@ -111,12 +111,25 @@ namespace PetShop.UI
         {
             List<Pet> allPets = PetService.GetAllPets();
 
-            Console.WriteLine("\nPlease select which pet to update:");
+            Console.Clear();
+            Console.WriteLine("\nPlease select which pet to update:\n");
             int selection = GetOption<Pet>(allPets, true);
 
             if (selection > 0)
             {
-                Console.WriteLine((PetService.UpdatePet(CreatePet(), allPets[selection-1].ID)) ? "Pet was successfully updated!" : "Error updating pet. Please try again.");
+                Pet selectedPet = allPets[selection - 1];
+                Pet newPet = CreatePet();
+                newPet.ID = selectedPet.ID;
+                newPet.Owner = selectedPet.Owner;
+                newPet.SoldDate = selectedPet.SoldDate;
+                Console.Clear();
+
+                Console.WriteLine($"\nDo you want to update\n{selectedPet}\nto\n{newPet}");
+
+                if (ConfirmChoise())
+                {
+                    Console.WriteLine((PetService.UpdatePet(newPet, selectedPet.ID)) ? "Pet was successfully updated!" : "Error updating pet. Please try again.");
+                }
             }
         }
     }

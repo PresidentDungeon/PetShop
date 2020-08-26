@@ -106,6 +106,26 @@ namespace PetShop.Core.Entities
             return selection;
         }
 
+        protected bool ConfirmChoise()
+        {
+            Console.WriteLine("(y/n)");
+
+            string choise = Console.ReadLine();
+
+            while (choise.ToLower() != "y" && choise.ToLower() != "n")
+            {
+                Console.WriteLine("Please type 'y' to accept or 'n' to cancel");
+                choise = Console.ReadLine();
+            }
+
+            if (choise.Equals("y"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         protected void Pause()
         {
             Console.WriteLine("Press any key to continue...");

@@ -10,6 +10,6 @@ namespace PetShop.Core.DomainService
         bool AddPet(Pet pet);
         IEnumerable<Pet> ReadPets();
         bool UpdatePet(Pet pet);
-        bool DeletePet(int id);
+        bool DeletePet(int ID);
     }
 }

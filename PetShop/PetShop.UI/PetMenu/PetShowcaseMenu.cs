@@ -8,7 +8,7 @@ namespace PetShop.UI
     public class PetShowcaseMenu: Menu
     {
         private IPetService PetService;
-        public PetShowcaseMenu(IPetService petService) : base("Showcase Menu", "Display all Pets", "Display Pets by Price", "Display Available Pets by Price", "Display top five Cheapest Available Pets")
+        public PetShowcaseMenu(IPetService petService) : base("Showcase Menu", "Display all Pets", "Display by Price", "Display Available by Price", "Display top five Cheapest Available Pets")
         {
             this.PetService = petService;
             ShouldCloseOnFinish = true;

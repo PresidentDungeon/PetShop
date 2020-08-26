@@ -15,7 +15,7 @@ namespace PetShop.Core.ApplicationService
 
         Owner GetOwnerByID(int ID);
 
-        public List<Owner> GetOwnerByName(string searchTitle);
+        List<Owner> GetOwnerByName(string searchTitle);
 
         bool UpdateOwner(Owner owner, int ID);
 

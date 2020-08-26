@@ -47,7 +47,7 @@ namespace PetShop.UI
 
             Pet pet = PetService.GetPetByID(ID);
             Console.Clear();
-            Console.WriteLine((pet != null) ? $"\nFound pet:\n{pet}" : $"\nNo pet was found");
+            Console.WriteLine((pet != null) ? $"\nFound pet:\n{pet}" : $"\nNo pet were found with that ID");
         }
 
         private void SearchByName()
@@ -75,7 +75,7 @@ namespace PetShop.UI
             Array petTypes = Enum.GetValues(typeof(petType));
             Console.WriteLine("\nSelect a pet type");
             int selection = GetOption<petType>((IList<petType>)petTypes, false);
-            petType petType = (petType)petTypes.GetValue(selection);
+            petType petType = (petType)petTypes.GetValue(selection-1);
             Console.Clear();
 
             List<Pet> foundPets = PetService.GetPetByType(petType);
@@ -108,12 +108,12 @@ namespace PetShop.UI
             Console.Clear();
             if (foundPets.Count == 0)
             {
-                Console.WriteLine("\nNo pets were found with that title...");
+                Console.WriteLine("\nNo pets were found with that birthdate...");
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("\nMatches are-----------------------\n");
+                Console.WriteLine("\nMatches are-----------------------");
                 foreach (Pet pet in foundPets)
                 {
                     Console.WriteLine($"{pet}");
