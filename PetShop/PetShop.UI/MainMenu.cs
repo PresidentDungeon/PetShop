@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PetShop.Core.Entities;
+using PetShop.UI.PetExchangeMenu;
 using PetShop.UI.PetMenu;
 using System;
 
@@ -9,7 +10,7 @@ namespace PetShop.UI
     {
         private IServiceProvider ServiceProvider;
 
-        public MainMenu(IServiceProvider serviceProvider) : base("Main Menu", "Pet Menu", "Owner Menu")
+        public MainMenu(IServiceProvider serviceProvider) : base("Main Menu", "Pet Menu", "Owner Menu", "Pet Exhange Menu")
         {
             this.ServiceProvider = serviceProvider;
         }
@@ -23,6 +24,9 @@ namespace PetShop.UI
                     break;
                 case 2:
                     ServiceProvider.GetRequiredService<OwnerMainMenu>().Run();
+                    break;
+                case 3:
+                    ServiceProvider.GetRequiredService<PetExchangeMainMenu>().Run();
                     break;
                 default:
                     break;

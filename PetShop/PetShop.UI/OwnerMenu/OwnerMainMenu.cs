@@ -108,10 +108,10 @@ namespace PetShop.UI
         private void ShowAllOwners()
         {
             Console.Clear();
-            Console.WriteLine("\nAll registered owners are: \n");
+            Console.WriteLine("\nAll registered owners are:");
             foreach (Owner owner in OwnerService.GetAllOwners())
             {
-                Console.WriteLine($"{owner}\n");
+                Console.WriteLine($"{owner}");
             }
         }
 

@@ -59,7 +59,7 @@ namespace PetShop.UI.PetMenu
                 petName = Console.ReadLine();
             }
 
-            Console.WriteLine("\nSelect a pet type");
+            Console.WriteLine("\nSelect a pet type\n");
             int selection = GetOption<petType>((IList<petType>)petTypes, false);
             petType petType = (petType)petTypes.GetValue(selection-1);
 
@@ -111,7 +111,7 @@ namespace PetShop.UI.PetMenu
         {
             List<Pet> allPets = PetService.GetAllPets();
 
-            Console.WriteLine("\nPlease select which pet to update:\n");
+            Console.WriteLine("\nPlease select which pet to update:");
             int selection = GetOption<Pet>(allPets, true);
 
             if (selection > 0)

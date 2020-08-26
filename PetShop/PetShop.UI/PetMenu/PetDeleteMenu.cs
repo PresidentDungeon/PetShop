@@ -44,7 +44,7 @@ namespace PetShop.UI.PetMenu
         {
             List<Pet> allPets = PetService.GetAllPets();
 
-            Console.WriteLine("\nPlease select which pet to delete:\n");
+            Console.WriteLine("\nPlease select which pet to delete:");
             int selection = GetOption<Pet>(allPets, true);
             
             if (selection > 0)

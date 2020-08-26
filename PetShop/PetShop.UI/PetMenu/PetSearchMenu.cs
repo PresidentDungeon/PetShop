@@ -47,7 +47,7 @@ namespace PetShop.UI.PetMenu
 
             Pet pet = PetService.GetPetByID(ID);
             Console.Clear();
-            Console.WriteLine((pet != null) ? $"\nFound pet:\n\n{pet}" : $"\nNo pet was found");
+            Console.WriteLine((pet != null) ? $"\nFound pet:\n{pet}" : $"\nNo pet was found");
         }
 
         private void SearchByName()
@@ -62,7 +62,7 @@ namespace PetShop.UI.PetMenu
             else
             {
                 Console.Clear();
-                Console.WriteLine("\nMatches are-----------------------\n");
+                Console.WriteLine("\nMatches are-----------------------");
                 foreach (Pet pet in foundPets)
                 {
                     Console.WriteLine($"{pet}");
@@ -86,7 +86,7 @@ namespace PetShop.UI.PetMenu
             else
             {
                 Console.Clear();
-                Console.WriteLine("\nMatches are-----------------------\n");
+                Console.WriteLine("\nMatches are-----------------------");
                 foreach (Pet pet in foundPets)
                 {
                     Console.WriteLine($"{pet}");

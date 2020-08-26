@@ -36,7 +36,11 @@ namespace PetShop.Infrastructure.Data
             int index = Owners.FindIndex((x) => { return x.ID == owner.ID; });
             if (index != -1)
             {
-                Owners[index] = owner;
+                Owners[index].FirstName = owner.FirstName;
+                Owners[index].LastName = owner.LastName;
+                Owners[index].Address = owner.Address;
+                Owners[index].PhoneNumber = owner.PhoneNumber;
+                Owners[index].Email = owner.Email;
                 return true;
             }
             return false;
