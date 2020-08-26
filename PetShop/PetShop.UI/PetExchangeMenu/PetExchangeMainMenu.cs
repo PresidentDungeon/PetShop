@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PetShop.UI.PetExchangeMenu
+namespace PetShop.UI
 {
     public class PetExchangeMainMenu : Menu
     {

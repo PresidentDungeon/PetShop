@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PetShop.Core.Entities
 {
-    public class Pet
+    public class Pet: ISearchAble
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -14,6 +14,11 @@ namespace PetShop.Core.Entities
         public string Color { get; set; }
         public Owner? Owner { get; set; }
         public double Price { get; set; }
+
+        public string searchValue()
+        {
+            return Name;
+        }
 
         public override string ToString()
         {

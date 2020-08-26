@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PetShop.Core.Entities
 {
-    public class Owner
+    public class Owner: ISearchAble
     {
         public int ID { get; set; }
         public string FirstName { get; set; }
@@ -12,6 +12,11 @@ namespace PetShop.Core.Entities
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+
+        public string searchValue()
+        {
+            return FirstName + " " + LastName;
+        }
 
         public override string ToString()
         {

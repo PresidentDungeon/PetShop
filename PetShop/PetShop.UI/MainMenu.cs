@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PetShop.Core.Entities;
-using PetShop.UI.PetExchangeMenu;
-using PetShop.UI.PetMenu;
 using System;
 
 namespace PetShop.UI

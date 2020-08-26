@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PetShop.UI.PetExchangeMenu
+namespace PetShop.UI
 {
     public class PetExchangeShowcaseMenu: Menu
     {
@@ -27,7 +27,7 @@ namespace PetShop.UI.PetExchangeMenu
                     DisplayPetsByID();
                     break;
                 case 2:
-                    //DisplayPetsBySelection();
+                    DisplayPetsBySelection();
                     break;
                 default:
                     break;
@@ -62,43 +62,23 @@ namespace PetShop.UI.PetExchangeMenu
             }
         }
 
-        private void ShowAllPetsByPrice()
+        private void DisplayPetsBySelection()
         {
+            List<Owner> allOwners = OwnerService.GetAllOwners();
             Console.Clear();
-            Console.WriteLine("\nAll registered pets by price are:");
-            foreach (Pet pet in PetService.GetAllPetsByPrice())
-            {
-                Console.WriteLine(pet);
-            }
-        }
+            Console.WriteLine("\nPlease select which owner to view:\n");
+            int selection = GetOption<Owner>(allOwners, true);
 
-        private void ShowAllAvailablePetsByPrice()
-        {
-            Console.Clear();
-            Console.WriteLine("\nAll available pets by price are:");
-            foreach (Pet pet in PetService.GetAllAvailablePetsByPrice())
+            if (selection > 0)
             {
-                Console.WriteLine(pet);
-            }
-        }
+                Owner selectedOwner = allOwners[selection - 1];
+                List<Pet> foundPets = PetExchangeService.ListAllPetsRegisteredToOwner(selectedOwner.ID);
 
-        private void DisplayTopFive()
-        {
-            Console.Clear();
-            List<Pet> sortedList = PetService.GetAllAvailablePetsByPrice();
-            int availableSize = sortedList.Count;
-
-            if (availableSize == 0)
-            {
-                Console.WriteLine("\nSorry, there are no available pets at the moment...");
-            }
-            else
-            {
-                Console.WriteLine((availableSize < 5) ? $"\nThere are only {availableSize} pets available:" : "\nTop five cheapest available pets are:");
-
-                for (int i = 0; i < availableSize; i++)
+                Console.Clear();
+                Console.WriteLine($"\nAll pets registered to {selectedOwner.FirstName} {selectedOwner.LastName}:");
+                foreach (Pet pet in foundPets)
                 {
-                    Console.WriteLine(sortedList[i]);
+                    Console.WriteLine(pet);
                 }
             }
         }

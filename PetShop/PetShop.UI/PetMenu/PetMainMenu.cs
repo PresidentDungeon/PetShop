@@ -4,7 +4,7 @@ using PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace PetShop.UI.PetMenu
+namespace PetShop.UI
 {
     public class PetMainMenu: Menu
     {

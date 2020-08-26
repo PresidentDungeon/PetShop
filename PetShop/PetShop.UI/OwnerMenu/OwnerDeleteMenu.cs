@@ -3,7 +3,7 @@ using PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace PetShop.UI.OwnerMenu
+namespace PetShop.UI
 {
     public class OwnerDeleteMenu: Menu
     {

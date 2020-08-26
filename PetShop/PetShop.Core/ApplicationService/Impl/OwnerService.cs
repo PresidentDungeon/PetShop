@@ -10,10 +10,12 @@ namespace PetShop.Core.ApplicationService.Impl
     public class OwnerService: IOwnerService
     {
         private IOwnerRepository OwnerRepository;
+        private ISearchEngine SearchEngine;
 
-        public OwnerService(IOwnerRepository ownerRepository)
+        public OwnerService(IOwnerRepository ownerRepository, ISearchEngine searchEngine)
         {
             this.OwnerRepository = ownerRepository;
+            this.SearchEngine = searchEngine;
         }
 
         public Owner CreateOwner(string firstName, string lastName, string address, string phoneNumber, string email)
@@ -59,6 +61,11 @@ namespace PetShop.Core.ApplicationService.Impl
         public Owner GetOwnerByID(int ID)
         {
             return GetAllOwners().Where((x) => { return x.ID == ID; }).FirstOrDefault();
+        }
+
+        public List<Owner> GetOwnerByName(string searchTitle)
+        {
+            return SearchEngine.Search<Owner>(GetAllOwners(), searchTitle);
         }
 
         public bool UpdateOwner(Owner owner, int ID)

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PetShop.UI.PetExchangeMenu
+namespace PetShop.UI
 {
     public class PetExchangeRegisterMenu: Menu
     {
@@ -122,7 +122,7 @@ namespace PetShop.UI.PetExchangeMenu
                 choise = Console.ReadLine();
             }
 
-            if (choise.Equals("y"))
+            if (choise.ToLower().Equals("y"))
             {
                 Console.WriteLine((PetExchangeService.RegisterPet(selectedPet, selectedOwner)) ? "\nPet successfully registered to owner" : "\nError registering pet to owner. Please try again");
             }

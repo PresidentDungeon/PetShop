@@ -9,10 +9,12 @@ namespace PetShop.Core.ApplicationService.Impl
     public class PetService : IPetService
     {
         private IPetRepository PetRepository;
+        private ISearchEngine SearchEngine;
 
-        public PetService(IPetRepository petRepository)
+        public PetService(IPetRepository petRepository, ISearchEngine searchEngine)
         {
             this.PetRepository = petRepository;
+            this.SearchEngine = searchEngine;
         }
 
         public Pet CreatePet(string petName, petType type, DateTime birthDate, string color, double price)
@@ -69,59 +71,8 @@ namespace PetShop.Core.ApplicationService.Impl
 
         public List<Pet> GetPetByName(string searchTitle)
         {
-            string[] searchTerms = searchTitle.ToLower().Split('%');
-            List<Pet> matches = new List<Pet>();
-
-            foreach (Pet pet in GetAllPets())
-            {
-                int size = 0;
-                if (!searchTitle.StartsWith('%'))
-                {
-                    if (!pet.Name.ToLower().StartsWith(searchTerms[0]))
-                    {
-                        continue;
-                    }
-                }
-                else
-                {
-                    size++;
-                }
-
-                String petTitle = pet.Name.ToLower();
-
-                for (int i = size; i < searchTerms.Length; i++)
-                {
-
-                    if (petTitle.Contains(searchTerms[i]))
-                    {
-                        int index = petTitle.IndexOf(searchTerms[i]);
-                        petTitle = petTitle.Substring(index + searchTerms[i].Length);
-                    }
-                    else
-                    {
-                        break;
-                    }
-
-                    if (searchTitle.EndsWith("%"))
-                    {
-                        if (petTitle.Length > 0)
-                        {
-                            matches.Add(pet);
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        if (petTitle.Length == 0)
-                        {
-                            matches.Add(pet);
-                            break;
-                        }
-                    }
-                }
-            }
-            return matches;
-        }
+            return SearchEngine.Search<Pet>(GetAllPets(), searchTitle);
+;       }
 
         public List<Pet> GetPetByBirthdate(DateTime date)
         {
