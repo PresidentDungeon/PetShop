@@ -36,10 +36,10 @@ namespace PetShop.UI
         private void ShowAllOwners()
         {
             Console.Clear();
-            Console.WriteLine("\nAll registered owners are:");
+            Console.WriteLine("\nAll registered owners are:\n");
             foreach (Owner owner in OwnerService.GetAllOwners())
             {
-                Console.WriteLine($"{owner}");
+                Console.WriteLine($"{owner}\n");
             }
         }
 
@@ -50,12 +50,12 @@ namespace PetShop.UI
             int ID;
             while (!int.TryParse(Console.ReadLine(), out ID) || ID <= 0)
             {
-                Console.WriteLine("\nPlease only enter a valid ID");
+                Console.WriteLine("Please only enter a valid ID");
             }
 
             Owner owner = OwnerService.GetOwnerByID(ID);
             Console.Clear();
-            Console.WriteLine((owner != null) ? $"\nFound owner:\n{owner}" : $"\nNo owner with that ID were found");
+            Console.WriteLine((owner != null) ? $"\nFound owner:\n\n{owner}\n" : $"\nNo owner with that ID were found");
         }
 
 
@@ -71,17 +71,12 @@ namespace PetShop.UI
             else
             {
                 Console.Clear();
-                Console.WriteLine("\nMatches are-----------------------");
+                Console.WriteLine("\nMatches are-----------------------\n");
                 foreach (Owner owner in foundOwners)
                 {
-                    Console.WriteLine($"{owner}");
+                    Console.WriteLine($"{owner}\n");
                 }
             }
         }
-
-
-
-
-
     }
 }

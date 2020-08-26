@@ -38,30 +38,30 @@ namespace PetShop.UI
         private void ShowAllPets()
         {
             Console.Clear();
-            Console.WriteLine("\nAll registered pets are:");
+            Console.WriteLine("\nAll registered pets are:\n");
             foreach (Pet pet in PetService.GetAllPets())
             {
-                Console.WriteLine(pet);
+                Console.WriteLine(pet + "\n");
             }
         }
 
         private void ShowAllPetsByPrice()
         {
             Console.Clear();
-            Console.WriteLine("\nAll registered pets by price are:");
+            Console.WriteLine("\nAll registered pets by price are:\n");
             foreach (Pet pet in PetService.GetAllPetsByPrice())
             {
-                Console.WriteLine(pet);
+                Console.WriteLine(pet + "\n");
             }
         }
 
         private void ShowAllAvailablePetsByPrice()
         {
             Console.Clear();
-            Console.WriteLine("\nAll available pets by price are:");
+            Console.WriteLine("\nAll available pets by price are:\n");
             foreach (Pet pet in PetService.GetAllAvailablePetsByPrice())
             {
-                Console.WriteLine(pet);
+                Console.WriteLine(pet + "\n");
             }
         }
 
@@ -77,11 +77,11 @@ namespace PetShop.UI
             }
             else
             {
-                Console.WriteLine((availableSize<5) ? $"\nThere are only {availableSize} pets available:" : "\nTop five cheapest available pets are:");
+                Console.WriteLine((availableSize<5) ? $"\nThere are only {availableSize} pets available:\n" : "\nTop five cheapest available pets are:\n");
             
                 for (int i = 0; i < availableSize; i++)
                 {
-                 Console.WriteLine(sortedList[i]);
+                 Console.WriteLine(sortedList[i] + "\n");
                 }
             }
         }

@@ -21,8 +21,8 @@ namespace PetShop.Core.Entities
 
         public override string ToString()
         {
-            return $"\nName: {Name} (ID {ID})\nAnimal Type: {Type}\nColor: {Color}\nBirthDate: {Birthdate.ToString("dd/MM/yyyy")}" +
-                $"\nPrice: {Price.ToString("n2")} DKK\nStatus: {((Owner == null) ? "NOT SOLD" : $"SOLD TO {Owner.FirstName} {Owner.LastName} ({SoldDate})")}\n";
+            return $"Name: {Name} (ID {ID})\nAnimal Type: {Type}\nColor: {Color}\nBirthDate: {Birthdate.ToString("dd/MM/yyyy")}" +
+                $"\nPrice: {Price.ToString("n2")} DKK\nStatus: {((Owner == null) ? "NOT SOLD" : $"SOLD TO {Owner.FirstName} {Owner.LastName} ({SoldDate})")}";
         }
     }
 

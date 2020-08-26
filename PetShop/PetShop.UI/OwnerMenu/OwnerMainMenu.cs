@@ -119,11 +119,11 @@ namespace PetShop.UI
                 newOwner.ID = selectedOwner.ID;
                 Console.Clear();
 
-                Console.WriteLine($"\nDo you want to update\n{selectedOwner}\nto\n{newOwner}");
+                Console.WriteLine($"\nDo you want to update\n\n{selectedOwner}\n\nto\n\n{newOwner}\n");
 
                 if (ConfirmChoise())
                 {
-                    Console.WriteLine((OwnerService.UpdateOwner(newOwner, selectedOwner.ID)) ? "Owner was successfully updated!" : "Error updating owner. Please try again.");
+                    Console.WriteLine((OwnerService.UpdateOwner(newOwner, selectedOwner.ID)) ? "\nOwner was successfully updated!" : "\nError updating owner. Please try again...");
                 }
             }
         }

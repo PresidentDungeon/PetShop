@@ -86,7 +86,7 @@ namespace PetShop.Core.Entities
 
             for (int i = 0; i < List.Count; i++)
             {
-                Console.WriteLine(i + 1 + ": " + List[i]);
+                Console.WriteLine($"{i + 1}:\n{List[i]}\n");
             }
             if (!isCancelable)
             {

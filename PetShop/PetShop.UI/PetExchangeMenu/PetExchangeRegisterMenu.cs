@@ -60,11 +60,11 @@ namespace PetShop.UI
             
             if(pet == null || owner == null)
             {
-                Console.WriteLine("No pet or owner found with that ID");
+                Console.WriteLine("\nNo pet or owner found with that ID");
                 return;
             }
 
-            Console.WriteLine($"\nDo you want to register\n{pet}\nto\n{owner}");
+            Console.WriteLine($"\nDo you want to register\n\n{pet}\n\nto\n\n{owner}\n");
            
             if(ConfirmChoise())
             {
@@ -102,7 +102,7 @@ namespace PetShop.UI
             selectedOwner = allOwners[ownerSelection - 1];
 
             Console.Clear();
-            Console.WriteLine($"\nDo you want to register\n{selectedPet}\nto\n{selectedOwner}");
+            Console.WriteLine($"\nDo you want to register\n\n{selectedPet}\n\nto\n\n{selectedOwner}\n");
 
             if (ConfirmChoise())
             {

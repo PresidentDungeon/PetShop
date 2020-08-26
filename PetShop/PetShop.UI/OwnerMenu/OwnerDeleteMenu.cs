@@ -46,7 +46,7 @@ namespace PetShop.UI
             else
             {
                 Console.Clear();
-                Console.WriteLine($"\nDo you want to delete\n{foundOwner}");
+                Console.WriteLine($"\nDo you want to delete\n\n{foundOwner}\n");
 
                 if (ConfirmChoise())
                 {
@@ -66,7 +66,7 @@ namespace PetShop.UI
             if (selection > 0)
             {
                 Console.Clear();
-                Console.WriteLine($"\nDo you want to delete\n{allOwners[selection - 1]}");
+                Console.WriteLine($"\nDo you want to delete\n\n{allOwners[selection - 1]}\n");
 
                 if (ConfirmChoise())
                 {

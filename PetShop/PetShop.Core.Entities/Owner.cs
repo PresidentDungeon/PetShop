@@ -18,7 +18,7 @@ namespace PetShop.Core.Entities
 
         public override string ToString()
         {
-            return $"\nName: {FirstName} {LastName} (ID {ID})\nAddress: {Address}\nPhone number: {PhoneNumber}\nEmail: {(string.IsNullOrEmpty(Email) ? "Unknown email" : Email)}\n";
+            return $"Name: {FirstName} {LastName} (ID {ID})\nAddress: {Address}\nPhone number: {PhoneNumber}\nEmail: {(string.IsNullOrEmpty(Email) ? "Unknown email" : Email)}";
         }
     }
 }

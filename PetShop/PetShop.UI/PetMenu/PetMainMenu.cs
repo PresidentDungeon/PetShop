@@ -60,8 +60,18 @@ namespace PetShop.UI
             }
 
             Console.WriteLine("\nSelect a pet type\n");
-            int selection = GetOption<petType>((IList<petType>)petTypes, false);
-            petType petType = (petType)petTypes.GetValue(selection-1);
+            int selection;
+
+            for (int i = 0; i < petTypes.Length; i++)
+            {
+                Console.WriteLine(i + 1 + ": " + petTypes.GetValue(i));
+            }
+            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > petTypes.Length)
+            {
+                    Console.WriteLine($"Invalid input. Please choose an option in range (1-{petTypes.Length})");
+            }
+
+            petType petType = (petType)petTypes.GetValue(selection - 1);
 
             Console.WriteLine("\nEnter birthdate:");
             DateTime birthDate;
@@ -124,11 +134,11 @@ namespace PetShop.UI
                 newPet.SoldDate = selectedPet.SoldDate;
                 Console.Clear();
 
-                Console.WriteLine($"\nDo you want to update\n{selectedPet}\nto\n{newPet}");
+                Console.WriteLine($"\nDo you want to update\n\n{selectedPet}\n\nto\n\n{newPet}\n");
 
                 if (ConfirmChoise())
                 {
-                    Console.WriteLine((PetService.UpdatePet(newPet, selectedPet.ID)) ? "Pet was successfully updated!" : "Error updating pet. Please try again.");
+                    Console.WriteLine((PetService.UpdatePet(newPet, selectedPet.ID)) ? "\nPet was successfully updated!" : "\nError updating pet. Please try again...");
                 }
             }
         }

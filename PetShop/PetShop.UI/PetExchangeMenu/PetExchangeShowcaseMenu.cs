@@ -55,10 +55,10 @@ namespace PetShop.UI
             List<Pet> foundPets = PetExchangeService.ListAllPetsRegisteredToOwner(ID);
 
             Console.Clear();
-            Console.WriteLine($"\nAll pets registered to {foundOwner.FirstName} {foundOwner.LastName}:");
+            Console.WriteLine($"\nAll pets registered to {foundOwner.FirstName} {foundOwner.LastName}:\n");
             foreach (Pet pet in foundPets)
             {
-                Console.WriteLine(pet);
+                Console.WriteLine(pet + "\n");
             }
         }
 
@@ -75,10 +75,10 @@ namespace PetShop.UI
                 List<Pet> foundPets = PetExchangeService.ListAllPetsRegisteredToOwner(selectedOwner.ID);
 
                 Console.Clear();
-                Console.WriteLine($"\nAll pets registered to {selectedOwner.FirstName} {selectedOwner.LastName}:");
+                Console.WriteLine($"\nAll pets registered to {selectedOwner.FirstName} {selectedOwner.LastName}:\n");
                 foreach (Pet pet in foundPets)
                 {
-                    Console.WriteLine(pet);
+                    Console.WriteLine(pet + "\n");
                 }
             }
         }

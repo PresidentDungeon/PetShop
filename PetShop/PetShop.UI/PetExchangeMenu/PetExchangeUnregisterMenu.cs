@@ -47,13 +47,13 @@ namespace PetShop.UI
 
             Pet pet = PetService.GetPetByID(petID);
 
-            if (pet.Owner == null || pet == null)
+            if (pet == null || pet.Owner == null)
             {
-                Console.WriteLine("No pet or registered owner found with that ID");
+                Console.WriteLine("\nNo pet or registered owner found with that ID");
                 return;
             }
 
-            Console.WriteLine($"\nDo you want to remove\n{pet.Owner}\nas a owner to\n{pet}");
+            Console.WriteLine($"\nDo you want to remove\n\n{pet.Owner}\n\nas a owner to\n\n{pet}\n");
 
             if (ConfirmChoise())
             {
@@ -78,7 +78,7 @@ namespace PetShop.UI
             selectedPet = allOwnedPets[petSelection - 1];
 
             Console.Clear();
-            Console.WriteLine($"\nDo you want to unregister\n{selectedPet.Owner}\nas a owner to\n{selectedPet}");
+            Console.WriteLine($"\nDo you want to unregister\n\n{selectedPet.Owner}\n\nas a owner to\n\n{selectedPet}\n");
 
             if (ConfirmChoise())
             {
