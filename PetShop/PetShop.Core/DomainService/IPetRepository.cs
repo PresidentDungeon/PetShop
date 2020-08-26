@@ -11,6 +11,5 @@ namespace PetShop.Core.DomainService
         IEnumerable<Pet> ReadPets();
         bool UpdatePet(Pet pet);
         bool DeletePet(int id);
-        void CreateInitialData();
     }
 }

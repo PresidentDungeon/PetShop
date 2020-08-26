@@ -11,6 +11,5 @@ namespace PetShop.Core.DomainService
         IEnumerable<Owner> ReadOwners();
         bool UpdateOwner(Owner owner);
         bool DeleteOwner(int id);
-        void CreateInitialData();
     }
 }

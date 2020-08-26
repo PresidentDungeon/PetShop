@@ -51,33 +51,5 @@ namespace PetShop.Infrastructure.Data
             }
             return false;
         }
-
-        public void CreateInitialData()
-        {
-            AddPet(new Pet 
-            { 
-                Name = "Hr. Dingles",
-                Type = petType.Cat,
-                Birthdate = DateTime.Parse("29-03-2012"),
-                Color = "White with black stripes",
-                Price = 750.0
-            });
-            AddPet(new Pet
-            {
-                Name = "SlowPoke",
-                Type = petType.Turtle,
-                Birthdate = DateTime.Parse("15-01-1982"),
-                Color = "Dark green",
-                Price = 365.25
-            });
-            AddPet(new Pet
-            {
-                Name = "Leggy",
-                Type = petType.Tarantula,
-                Birthdate = DateTime.Parse("05-08-2019"),
-                Color = "Brown with orange dots",
-                Price = 650.0
-            });
-        }
     }
 }

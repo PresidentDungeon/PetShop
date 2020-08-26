@@ -56,25 +56,5 @@ namespace PetShop.Infrastructure.Data
             }
             return false;
         }
-
-        public void CreateInitialData()
-        {
-            AddOwner(new Owner 
-            {
-                FirstName = "Mathias",
-                LastName = "Thomsen",
-                Address = "Tulipanvej 33",
-                PhoneNumber = "42411722",
-                Email = "MathiasThomsen@gmail.com"
-            });
-            AddOwner(new Owner
-            {
-                FirstName = "Josefine",
-                LastName = "Thulstrup",
-                Address = "Kastanievej 17",
-                PhoneNumber = "23221119",
-                Email = "SejeJozze@hotmail.com"
-            });
-        }
     }
 }

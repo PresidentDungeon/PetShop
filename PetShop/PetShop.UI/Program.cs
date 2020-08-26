@@ -31,15 +31,14 @@ namespace PetShop.UI
             serviceCollection.AddScoped<PetExchangeRegisterMenu>();
             serviceCollection.AddScoped<PetExchangeUnregisterMenu>();
             serviceCollection.AddScoped<PetExchangeShowcaseMenu>();
+            serviceCollection.AddScoped<InitStaticData>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var petRepository = serviceProvider.GetRequiredService<IPetRepository>(); 
-            var ownerRepository = serviceProvider.GetRequiredService<IOwnerRepository>(); 
+            var initStaticData = serviceProvider.GetRequiredService<InitStaticData>(); 
             var mainMenu = serviceProvider.GetRequiredService<MainMenu>();
 
-            petRepository.CreateInitialData();
-            ownerRepository.CreateInitialData();
+            initStaticData.InitData();
             mainMenu.Run();
         }
     }
