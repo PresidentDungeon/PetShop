@@ -2,6 +2,7 @@
 using PetShop.Core.ApplicationService;
 using PetShop.Core.ApplicationService.Impl;
 using PetShop.Core.DomainService;
+using PetShop.Core.Search;
 using PetShop.Infrastructure.Data;
 
 namespace PetShop.UI
@@ -24,6 +25,7 @@ namespace PetShop.UI
             serviceCollection.AddScoped<PetSearchMenu>();
             serviceCollection.AddScoped<PetDeleteMenu>();
             serviceCollection.AddScoped<OwnerMainMenu>();
+            serviceCollection.AddScoped<OwnerShowcaseMenu>();
             serviceCollection.AddScoped<OwnerDeleteMenu>();
             serviceCollection.AddScoped<PetExchangeMainMenu>();
             serviceCollection.AddScoped<PetExchangeRegisterMenu>();

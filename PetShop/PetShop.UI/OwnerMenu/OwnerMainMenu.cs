@@ -26,7 +26,7 @@ namespace PetShop.UI
                     Pause();
                     break;
                 case 2:
-                    ShowAllOwners();
+                    ServiceProvider.GetRequiredService<OwnerShowcaseMenu>().Run();
                     Pause();
                     break;
                 case 3:
@@ -101,16 +101,6 @@ namespace PetShop.UI
             if (OwnerService.AddOwner(owner))
             {
                 Console.WriteLine("\nOwner was successfully added!");
-            }
-        }
-
-        private void ShowAllOwners()
-        {
-            Console.Clear();
-            Console.WriteLine("\nAll registered owners are:");
-            foreach (Owner owner in OwnerService.GetAllOwners())
-            {
-                Console.WriteLine($"{owner}");
             }
         }
 

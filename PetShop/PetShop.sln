@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShop.Core", "PetShop.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShop.Infrastructure.Data", "PetShop.Infrastructure.Data\PetShop.Infrastructure.Data.csproj", "{C9D78328-75DE-429F-A741-ED62F5D49FB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.Core.Search", "PetShop.Core.Search\PetShop.Core.Search.csproj", "{3B7C82E3-152E-445F-ABAB-69C27BC5930D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C9D78328-75DE-429F-A741-ED62F5D49FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9D78328-75DE-429F-A741-ED62F5D49FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9D78328-75DE-429F-A741-ED62F5D49FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B7C82E3-152E-445F-ABAB-69C27BC5930D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B7C82E3-152E-445F-ABAB-69C27BC5930D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B7C82E3-152E-445F-ABAB-69C27BC5930D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B7C82E3-152E-445F-ABAB-69C27BC5930D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

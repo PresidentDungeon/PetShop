@@ -1,7 +1,6 @@
-﻿using PetShop.Core.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace PetShop.Core.DomainService
+namespace PetShop.Core.Search
 {
     public interface ISearchEngine
 

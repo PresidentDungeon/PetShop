@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PetShop.Core.Search;
+using System;
 
 namespace PetShop.Core.Entities
 {

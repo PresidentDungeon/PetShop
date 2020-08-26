@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PetShop.Core.Search\PetShop.Core.Search.csproj" />
-  </ItemGroup>
-
 </Project>

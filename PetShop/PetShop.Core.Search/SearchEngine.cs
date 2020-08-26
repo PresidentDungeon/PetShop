@@ -1,10 +1,7 @@
-﻿using PetShop.Core.DomainService;
-using PetShop.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace PetShop.Infrastructure.Data
+namespace PetShop.Core.Search
 {
     public class SearchEngine : ISearchEngine
     {
@@ -29,6 +26,7 @@ namespace PetShop.Infrastructure.Data
                 }
 
                 String entityTitle = entity.searchValue().ToLower();
+                bool candidateMeetsCriteria = true;
 
                 for (int i = size; i < searchTerms.Length; i++)
                 {
@@ -40,26 +38,25 @@ namespace PetShop.Infrastructure.Data
                     }
                     else
                     {
+                        candidateMeetsCriteria = false;
                         break;
                     }
-
-                    if (searchTitle.EndsWith("%"))
+                }
+                    if (searchTitle.EndsWith("%") && candidateMeetsCriteria)
                     {
                         if (entityTitle.Length > 0)
                         {
                             matches.Add(entity);
-                            break;
                         }
                     }
                     else
                     {
-                        if (entityTitle.Length == 0)
+                        if (entityTitle.Length == 0 && candidateMeetsCriteria)
                         {
                             matches.Add(entity);
-                            break;
                         }
                     }
-                }
+                
             }
             return matches;
         }

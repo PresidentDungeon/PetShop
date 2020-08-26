@@ -8,9 +8,9 @@ namespace PetShop.UI
     public class PetSearchMenu : Menu
     {
         private IPetService PetService;
-        public PetSearchMenu(IPetService PetService) : base("Search Menu", "Search by ID", "Search by Name", "Search by Animal Type", "Search by Birthdate")
+        public PetSearchMenu(IPetService petService) : base("Search Menu", "Search by ID", "Search by Name", "Search by Animal Type", "Search by Birthdate")
         {
-            this.PetService = PetService;
+            this.PetService = petService;
             ShouldCloseOnFinish = true;
         }
 
