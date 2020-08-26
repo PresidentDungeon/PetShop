@@ -9,7 +9,7 @@ namespace PetShop.Infrastructure.Data
     public class PetRepository: IPetRepository
     {
         private int ID;
-        private List<Pet> Pets;
+        private IEnumerable<Pet> Pets;
 
         public PetRepository()
         {
@@ -21,7 +21,7 @@ namespace PetShop.Infrastructure.Data
         {
             ID++;
             pet.ID = ID;
-            Pets.Add(pet);
+            ((List<Pet>)Pets).Add(pet);
             return true;
         }
 
@@ -32,10 +32,10 @@ namespace PetShop.Infrastructure.Data
 
         public bool UpdatePet(Pet pet)
         {
-            int index = Pets.FindIndex((x) => { return x.ID == pet.ID; });
+            int index = ((List<Pet>)Pets).FindIndex((x) => { return x.ID == pet.ID; });
             if (index != -1)
             {
-                Pets[index] = pet;
+                ((List<Pet>)Pets)[index] = pet;
                 return true;
             }
             return false;
@@ -46,7 +46,7 @@ namespace PetShop.Infrastructure.Data
             Pet pet = Pets.Where((x) => { return x.ID == ID; }).FirstOrDefault();
             if (pet != null)
             {
-                Pets.Remove(pet);
+                ((List<Pet>)Pets).Remove(pet);
                 return true;
             }
             return false;

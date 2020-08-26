@@ -10,7 +10,7 @@ namespace PetShop.Infrastructure.Data
     public class OwnerRepository : IOwnerRepository
     {
         private int ID;
-        private List<Owner> Owners;
+        private IEnumerable<Owner> Owners;
 
         public OwnerRepository()
         {
@@ -22,7 +22,7 @@ namespace PetShop.Infrastructure.Data
         {
             ID++;
             owner.ID = ID;
-            Owners.Add(owner);
+            ((List<Owner>)Owners).Add(owner);
             return true;
         }
 
@@ -33,14 +33,19 @@ namespace PetShop.Infrastructure.Data
 
         public bool UpdateOwner(Owner owner)
         {
-            int index = Owners.FindIndex((x) => { return x.ID == owner.ID; });
+            int index = ((List<Owner>)Owners).FindIndex((x) => { return x.ID == owner.ID; });
             if (index != -1)
             {
-                Owners[index].FirstName = owner.FirstName;
-                Owners[index].LastName = owner.LastName;
-                Owners[index].Address = owner.Address;
-                Owners[index].PhoneNumber = owner.PhoneNumber;
-                Owners[index].Email = owner.Email;
+                List<Owner> newOwners = Owners.ToList();
+
+                newOwners[index].FirstName = owner.FirstName;
+                newOwners[index].LastName = owner.LastName;
+                newOwners[index].Address = owner.Address;
+                newOwners[index].PhoneNumber = owner.PhoneNumber;
+                newOwners[index].Email = owner.Email;
+
+                Owners = newOwners;
+
                 return true;
             }
             return false;
@@ -51,7 +56,7 @@ namespace PetShop.Infrastructure.Data
             Owner owner = Owners.Where((x) => { return x.ID == ID; }).FirstOrDefault();
             if (owner != null)
             {
-                Owners.Remove(owner);
+                ((List<Owner>)Owners).Remove(owner);
                 return true;
             }
             return false;
