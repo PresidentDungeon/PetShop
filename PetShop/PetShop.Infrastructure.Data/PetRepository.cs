@@ -35,7 +35,9 @@ namespace PetShop.Infrastructure.Data
             int index = ((List<Pet>)Pets).FindIndex((x) => { return x.ID == pet.ID; });
             if (index != -1)
             {
-                ((List<Pet>)Pets)[index] = pet;
+                List<Pet> newPets = Pets.ToList();
+                newPets[index] = pet;
+                Pets = newPets;
                 return true;
             }
             return false;

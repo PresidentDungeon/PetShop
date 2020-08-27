@@ -47,7 +47,7 @@ namespace PetShop.UI
 
             Pet pet = PetService.GetPetByID(ID);
             Console.Clear();
-            Console.WriteLine((pet != null) ? $"\nFound pet:\n{pet}" : $"\nNo pet were found with that ID");
+            Console.WriteLine((pet != null) ? $"\nFound pet:\n\n{pet}\n" : $"\nNo pet were found with that ID");
         }
 
         private void SearchByName()
@@ -62,10 +62,10 @@ namespace PetShop.UI
             else
             {
                 Console.Clear();
-                Console.WriteLine("\nMatches are-----------------------");
+                Console.WriteLine("\nMatches are-----------------------\n");
                 foreach (Pet pet in foundPets)
                 {
-                    Console.WriteLine($"{pet}");
+                    Console.WriteLine($"{pet}\n");
                 }
             }
         }
@@ -73,11 +73,20 @@ namespace PetShop.UI
         private void SearchByType()
         {
             Array petTypes = Enum.GetValues(typeof(petType));
-            Console.WriteLine("\nSelect a pet type");
-            int selection = GetOption<petType>((IList<petType>)petTypes, false);
-            petType petType = (petType)petTypes.GetValue(selection-1);
-            Console.Clear();
 
+            Console.WriteLine("\nSelect a pet type\n");
+            int selection;
+
+            for (int i = 0; i < petTypes.Length; i++)
+            {
+                Console.WriteLine(i + 1 + ": " + petTypes.GetValue(i));
+            }
+            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > petTypes.Length)
+            {
+                Console.WriteLine($"Invalid input. Please choose an option in range (1-{petTypes.Length})");
+            }
+
+            petType petType = (petType)petTypes.GetValue(selection - 1);
             List<Pet> foundPets = PetService.GetPetByType(petType);
             if (foundPets.Count == 0)
             {
@@ -86,10 +95,10 @@ namespace PetShop.UI
             else
             {
                 Console.Clear();
-                Console.WriteLine("\nMatches are-----------------------");
+                Console.WriteLine("\nMatches are-----------------------\n");
                 foreach (Pet pet in foundPets)
                 {
-                    Console.WriteLine($"{pet}");
+                    Console.WriteLine($"{pet}\n");
                 }
             }
         }
@@ -113,10 +122,10 @@ namespace PetShop.UI
             else
             {
                 Console.Clear();
-                Console.WriteLine("\nMatches are-----------------------");
+                Console.WriteLine("\nMatches are-----------------------\n");
                 foreach (Pet pet in foundPets)
                 {
-                    Console.WriteLine($"{pet}");
+                    Console.WriteLine($"{pet}\n");
                 }
             }
         }
